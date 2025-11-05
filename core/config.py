@@ -1,0 +1,21 @@
+"""Configuration settings for the application."""
+from pydantic_settings import BaseSettings
+
+
+class Settings(BaseSettings):
+    """Application settings loaded from environment variables."""
+    
+    openai_api_key: str
+    openai_model: str = "gpt-4-turbo-preview"
+    embedding_model: str = "text-embedding-3-small"
+    chunk_size: int = 1000
+    chunk_overlap: int = 200
+    
+    class Config:
+        env_file = ".env"
+        env_file_encoding = "utf-8"
+        case_sensitive = False
+
+
+settings = Settings()
+
